@@ -2,127 +2,102 @@
 
 **One prompt to boot your personal AI operating system.**
 
-MercuryOS turns Claude Code into a team of specialized AI agents that route work, hire new members when there's a gap, and learn your preferences over time. You paste one prompt into an empty directory. It builds the system. You talk to Mercury — he handles the rest.
+An AI-independent orchestration layer that works with any tool that has filesystem access and sub-agent capability. Paste a single prompt into an empty directory. It builds the rest. You talk to Mercury — Mercury talks to the team.
 
 ## Quick Start
 
-1. **Create an empty directory** and open it in [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
-2. **Copy the contents of [`prompt.md`](prompt.md)**
-3. **Paste it into Claude Code** and hit enter
+1. Create an empty directory
+2. Open it in your AI tool of choice
+3. Paste the contents of [`prompt.md`](prompt.md) and run it
 
-That's it. Mercury boots up with a starter team and is ready for your first request.
+Mercury boots with a starter team of three and is ready for your first request.
 
-## What Boots Up
+### Platform Notes
 
-The prompt creates a two-layer architecture and a starter team of four:
+**Claude Code** — Open the directory, paste the prompt. The Agent tool provides sub-agent capability out of the box. Set your `CLAUDE.md` as the system prompt.
 
-### The Team
+**Codex** — Use the prompt as your system instructions. Codex supports file creation and sub-agent dispatch. Point it at the directory and paste the prompt as your first message.
 
-| Member | Role | What They Do |
-|--------|------|-------------|
-| **Mercury** | Orchestrator | Routes your requests to the right team member. Never does work directly — only delegates. The only one you talk to. |
-| **Minerva** | Senior Researcher | Investigates any domain. Produces structured research briefs. Critical to the hiring workflow. |
-| **Juno** | HR Lead | Designs new AI team members based on research. Picks mythological names with meaningful connections to each role. |
-| **Apollo** | Product Manager | Pressure-tests ideas. Defines real problems. Writes product briefs. Shapes what gets built. |
+**Other tools** — Any AI tool that can (a) read and write files and (b) spawn sub-agents or equivalent can run MercuryOS. Adapt the dispatch mechanism to your tool's agent/function-calling pattern.
 
-### The File Structure
+## What You Get
 
-```
-your-project/
-├── CLAUDE.md              # Mercury — the orchestrator (this IS the system prompt)
-├── Conventions.md         # File standards
-├── Inbox/                 # Drop items here for Mercury to triage
-├── Projects/              # Your project files
-├── Preferences/           # Seven-layer system that learns who you are
-│   ├── README.md
-│   ├── facts.md           # Ground truth about you
-│   ├── preferences.md     # Your choices when alternatives exist
-│   ├── values.md          # What you optimize for
-│   ├── heuristics.md      # Your decision patterns
-│   ├── constraints.md     # Hard rules and boundaries
-│   ├── salience.md        # What gets your attention
-│   └── contexts.md        # Current state — projects, priorities
-└── Team/
-    ├── Registry.md        # The team roster
-    ├── Retrospectives/    # Post-session reviews
-    ├── Minerva/           # Researcher
-    │   ├── Persona.md
-    │   ├── Journal/
-    │   └── Memory/
-    ├── Juno/              # HR Lead
-    │   ├── Persona.md
-    │   ├── Journal/
-    │   └── Memory/
-    └── Apollo/            # Product Manager
-        ├── Persona.md
-        ├── Journal/
-        └── Memory/
-```
+- **Mercury** — the orchestrator. Routes requests, never does work directly. The only agent you talk to.
+- **Three starter roles** — a researcher, an HR lead, and a product manager. They get named during boot using your chosen naming convention (default: Roman gods, each name meaningful to the role).
+- **Three-layer architecture** — preferences, decisions, and operations, separated by durability.
+- **Task and decision logging** — a record of what was asked and what choices were made, used for rebuilds.
 
-## The Two-Layer Architecture
+## The Three-Layer Architecture
 
-MercuryOS separates **operations** from **identity**.
+MercuryOS separates your data into three layers based on how long they last.
 
-**Layer 1 — Operations** is the team system: Mercury's routing logic, team member personas, conventions, journals, memories. This is the product. It defines how work gets done.
+**Preferences (most durable)** — Who you are. Facts, preferences, values, heuristics, constraints, salience, current contexts. Organized by cognitive primitive type. This layer is fully portable: copy it to any AI system and it knows you. Survives complete rebuilds.
 
-**Layer 2 — Preferences** is you: your facts, preferences, values, heuristics, constraints, what matters to you, what you're working on right now. This is the user config. It's portable — copy the `Preferences/` directory to any AI system and it knows who you are.
+**Decisions (medium durable)** — Choices made while building and operating the system. Each entry logs what was decided, why, what alternatives were considered, and which task prompted it. On a rebuild, the new system reads these as guidance rather than gospel — it can make different choices with better reasoning.
 
-The team learns Layer 2 as you work together. When you express a preference or reveal a value through a decision, team members capture it. Over time, the system gets better because it knows you better.
+**Operations (least durable)** — The OS itself: team roster, routing logic, personas, conventions, workflows. This is the layer that gets rebuilt when you upgrade. It is a product of the prompt plus your preferences and decisions, not a thing you preserve.
+
+The key insight: when you separate identity from machinery, you can replace the machinery without losing yourself.
 
 ## How It Grows
 
-### Auto-Hiring
+**Auto-hiring.** Ask for something no one on the team handles. Mercury has the researcher investigate the role, the HR lead design a new team member, and presents you with a name and summary. You approve, they join the team. The team grows to match your usage.
 
-Ask Mercury for something no one on the team can handle — say, "write a blog post" or "review this code." Mercury will:
+**Task logging.** Every request is recorded. Over time this builds a capability map — what you actually use the system for. Rebuilds can read this to prioritize which roles to recreate first.
 
-1. Have Minerva research what a human professional in that role actually does
-2. Have Juno design a new AI team member based on the research
-3. Present you with a name, title, and summary — you approve
-4. The new member joins the team and handles your request
+**Decision logging.** When the system makes a structural choice (naming convention, file organization, workflow design), it logs the decision with context. Future versions inherit your decisions without inheriting your implementation.
 
-The team grows to fit your needs. You never design personas yourself.
+**Preference capture.** As you work, team members watch for signals — facts, preferences, values, patterns — and write them to the appropriate preference file. The system gets better because it knows you better.
 
-### Journals and Memory
+## Upgrades and Rebuilds
 
-After every task, the team member who did the work writes a journal entry — what was done, decisions made, outcome. Reusable learnings get saved to their Memory directory and loaded into future dispatches. The team gets smarter over time.
+This is the core design bet. When a better AI model ships:
 
-### Session Retrospectives
+1. Start a fresh session with the original prompt
+2. Point it at your existing MercuryOS directory
+3. It reads your preferences, decision log, and task history
+4. It rebuilds operations from scratch — new personas, new workflows, informed by everything that came before
 
-When you end a session, Mercury reviews what happened: what went well, what could improve, any learnings. This gets written to `Team/Retrospectives/` for continuity across sessions.
+The prompt is a seed, not a blueprint. Each rebuild produces a system shaped by your actual usage, not by the assumptions of the original author. Preferences persist. Decisions provide guidance. Operations get rebuilt better.
+
+You never migrate. You replant.
 
 ## Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (Anthropic's CLI for Claude)
-- A Claude API key with access to the Agent tool (Claude Pro, Team, or Enterprise)
+- Any AI tool with filesystem read/write access
+- Sub-agent or equivalent dispatch capability (the tool can spawn scoped sub-tasks)
+- No specific vendor, model, or platform dependency
 
 ## FAQ
 
-**Why not just use Claude Code directly?**
-You can. MercuryOS adds structure: specialized agents with distinct expertise, persistent memory, preference learning, and automatic team growth. It's the difference between having one generalist and having a team.
+**Why not just use my AI tool directly?**
+You can. MercuryOS adds specialization, persistent memory, preference learning, and automatic team growth. One generalist vs. a team that knows you.
 
-**Can I modify the team members?**
-Yes. Edit any `Persona.md` file, or ask Mercury to have Juno redesign a member. The system is just markdown files — fully transparent and editable.
+**Is this tied to a specific AI platform?**
+No. It requires filesystem access and sub-agent capability. Any tool with those features works. The `Preferences/` layer is portable to anything, including tools that don't run MercuryOS.
 
-**Can I add my own team members manually?**
-Yes. Create a directory under `Team/`, write a `Persona.md` following the existing pattern, and add them to `Team/Registry.md`. But the auto-hiring workflow is designed to produce better personas than most people would write from scratch.
+**What are the three layers again?**
+Preferences (who you are, most durable), decisions (choices made, medium durable), operations (the system itself, least durable). Preferences survive everything. Operations get rebuilt on upgrade.
 
-**Does this work with other AI tools?**
-The architecture is designed for Claude Code's Agent tool, which allows Mercury to spawn sub-agents. Other tools that support similar multi-agent patterns could adapt it. The `Preferences/` directory is fully portable regardless.
+**Can I modify team members?**
+Yes. Edit any persona file, or ask Mercury to redesign a member through the HR lead. Everything is markdown.
 
 **What's with the mythological names?**
-Each name has a meaningful connection to the role, not just a cool sound. Minerva was the goddess the other gods consulted before decisions (researcher). Juno was the goddess of beginnings who brought new beings into the world (HR). Apollo presided over the Oracle at Delphi, turning confusion into clarity (product). The naming convention is maintained by Juno as the team grows.
+The default naming convention uses Roman gods, each chosen for a meaningful connection to the role. The convention is configurable — you can use any naming scheme. The HR lead maintains consistency.
 
-**Is my data sent anywhere?**
-MercuryOS is just a prompt and markdown files on your machine. Your data goes wherever your Claude Code usage goes (Anthropic's API). Nothing additional.
+**How is this different from a fixed agent framework?**
+No predefined file structure. No hardcoded team. The prompt creates an orchestrator and three starter roles. Everything else emerges from use. The system builds its own structure organically.
+
+**Does a rebuild lose my team?**
+It rebuilds your team. The decision log records why each member was created and how they were designed. A rebuild reads that history and recreates what you need — potentially better, since the new model may be more capable.
 
 ## Contributing
 
 MercuryOS is early. If you try it and find something that should work differently, open an issue. Pull requests welcome for:
 
 - Boot prompt improvements
-- New starter team configurations
+- Platform-specific setup guides
 - Documentation
-- Website (coming soon)
 
 ## License
 
