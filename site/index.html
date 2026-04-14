@@ -11,6 +11,7 @@
   <meta property="og:description" content="An open source prompt that boots a personal AI operating system. One prompt, one folder. Works with any AI tool. Your preferences are the gold — they survive every rebuild.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mercuryos.ai">
+  <meta property="og:image" content="https://mercuryos.ai/mercury.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="mercuryos.ai &mdash; Your AI team starts with one prompt">
   <meta name="twitter:description" content="An open source prompt that boots a personal AI operating system. One prompt, one folder. Works with any AI tool. Your preferences are the gold — they survive every rebuild.">
@@ -39,34 +40,40 @@
     html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     .code-block-body::-webkit-scrollbar { width: 6px; height: 6px; }
     .code-block-body::-webkit-scrollbar-track { background: transparent; }
-    .code-block-body::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
-    .code-block-body::-webkit-scrollbar-thumb:hover { background: #3F3F46; }
+    .code-block-body::-webkit-scrollbar-thumb { background: #2F6F7A; border-radius: 3px; }
+    .code-block-body::-webkit-scrollbar-thumb:hover { background: #4A8C96; }
   </style>
 </head>
-<body class="bg-[#0A0A0B] text-zinc-50 font-sans">
+<body class="bg-[#0B2E3A] text-[#E6E1D3] font-sans">
+
+  <!-- Hero Image -->
+  <div class="relative w-full" style="max-height: 400px; overflow: hidden;">
+    <img src="mercury.png" alt="Mercury" class="w-full object-cover object-left" style="max-height: 400px;">
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 50%, #0B2E3A 100%);"></div>
+  </div>
 
   <div class="max-w-[720px] mx-auto px-6 md:px-8 lg:px-0">
 
     <!-- Hero -->
-    <section class="pt-32 md:pt-40 pb-20 md:pb-32">
-      <p class="font-mono text-xs uppercase text-zinc-500 tracking-[0.05em] mb-6">Open source</p>
-      <h1 class="text-4xl md:text-[56px] font-semibold text-zinc-50 tracking-[-0.035em] leading-[1.1] mb-6">Your personal OS starts with one prompt and one folder.</h1>
-      <p class="text-lg text-zinc-400 max-w-[540px] mb-10">An open source prompt that boots a personal AI operating system. Works with any AI tool. Your preferences are the gold — details about you that accumulate over time and survive every rebuild.</p>
+    <section class="pt-12 md:pt-16 pb-20 md:pb-32">
+      <p class="font-mono text-xs uppercase text-[#6E8F97] tracking-[0.05em] mb-6">Open source</p>
+      <h1 class="text-4xl md:text-[56px] font-semibold text-[#E6E1D3] tracking-[-0.035em] leading-[1.1] mb-6">Your personal OS starts with one prompt and one folder.</h1>
+      <p class="text-lg text-[#8FAFB6] max-w-[540px] mb-10">An open source prompt that boots a personal AI operating system. Works with any AI tool. Your preferences are the gold — details about you that accumulate over time and survive every rebuild.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <button id="hero-copy-btn" class="bg-slate-200 text-zinc-950 text-[15px] font-medium px-6 py-3 rounded-lg hover:bg-slate-100 active:bg-slate-300 active:scale-[0.98] transition-all cursor-pointer">Copy the prompt</button>
-        <a href="https://github.com/heff/mercuryos" class="text-zinc-400 hover:text-zinc-50 hover:underline text-[15px] font-medium px-6 py-3 transition-colors">View on GitHub</a>
+        <button id="hero-copy-btn" class="bg-[#F28C28] text-[#0B2E3A] text-[15px] font-medium px-6 py-3 rounded-lg hover:bg-[#F2B15E] active:bg-[#E76F1E] active:scale-[0.98] transition-all cursor-pointer">Copy the prompt</button>
+        <a href="https://github.com/heff/mercuryos" class="text-[#8FAFB6] hover:text-[#E6E1D3] hover:underline text-[15px] font-medium px-6 py-3 transition-colors">View on GitHub</a>
       </div>
     </section>
 
     <!-- Prompt -->
     <section class="pb-20 md:pb-32">
-      <div class="rounded-xl border border-zinc-800" style="box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.5);">
-        <div class="bg-zinc-900 rounded-t-xl flex items-center justify-between px-5 py-3">
-          <span class="font-mono text-sm text-zinc-400">prompt.md</span>
-          <button id="code-copy-btn" class="bg-transparent text-zinc-500 font-mono text-sm px-3 py-1.5 border border-zinc-800 rounded hover:bg-zinc-900 hover:text-zinc-400 hover:border-zinc-700 transition-all cursor-pointer">Copy</button>
+      <div class="rounded-xl border border-[#1A3D47]" style="box-shadow: 0 0 0 1px rgba(47,111,122,0.15), 0 4px 24px rgba(0,0,0,0.4);">
+        <div class="bg-[#0D2530] rounded-t-xl flex items-center justify-between px-5 py-3">
+          <span class="font-mono text-sm text-[#8FAFB6]">prompt.md</span>
+          <button id="code-copy-btn" class="bg-transparent text-[#6E8F97] font-mono text-sm px-3 py-1.5 border border-[#1A3D47] rounded hover:bg-[#0D2530] hover:text-[#8FAFB6] hover:border-[#2F6F7A] transition-all cursor-pointer">Copy</button>
         </div>
-        <div class="code-block-body bg-[#111113] rounded-b-xl overflow-auto" style="max-height: 480px; padding: 24px 20px;">
-          <pre class="font-mono text-[13px] text-zinc-200 leading-relaxed whitespace-pre-wrap break-words"><code id="prompt-content"># MercuryOS
+        <div class="code-block-body bg-[#081E28] rounded-b-xl overflow-auto" style="max-height: 480px; padding: 24px 20px;">
+          <pre class="font-mono text-[13px] text-[#E6E1D3] leading-relaxed whitespace-pre-wrap break-words"><code id="prompt-content"># MercuryOS
 
 Your personal OS starts with one prompt and one folder.
 Read this file, then build the system it describes.
@@ -267,65 +274,65 @@ On boot:
 </code></pre>
         </div>
       </div>
-      <p class="text-sm text-zinc-500 text-center mt-6">~1,100 tokens. Paste it into your AI tool and start talking.</p>
+      <p class="text-sm text-[#6E8F97] text-center mt-6">~1,100 tokens. Paste it into your AI tool and start talking.</p>
     </section>
 
     <!-- What You Get -->
     <section class="pb-20 md:pb-32">
-      <h2 class="text-4xl font-semibold text-zinc-50 mb-12">What you get</h2>
+      <h2 class="text-4xl font-semibold text-[#E6E1D3] mb-12">What you get</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-10">
         <div>
-          <h3 class="text-2xl font-medium text-zinc-50 mb-3">Mercury</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">An orchestrator that routes your requests to the right team member and returns results. You talk to one agent; the team works behind it. Renameable — make it yours.</p>
+          <h3 class="text-2xl font-medium text-[#E6E1D3] mb-3">Mercury</h3>
+          <p class="text-base text-[#8FAFB6] max-w-[320px] md:max-w-[320px]">An orchestrator that routes your requests to the right team member and returns results. You talk to one agent; the team works behind it. Renameable — make it yours.</p>
         </div>
         <div>
-          <h3 class="text-2xl font-medium text-zinc-50 mb-3">A team that builds itself</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">Three roles to start: researcher, HR lead, product manager. Named during boot. The PM designs new OS capabilities when tasks aren't supported yet. Need more? Mercury hires automatically.</p>
+          <h3 class="text-2xl font-medium text-[#E6E1D3] mb-3">A team that builds itself</h3>
+          <p class="text-base text-[#8FAFB6] max-w-[320px] md:max-w-[320px]">Three roles to start: researcher, HR lead, product manager. Named during boot. The PM designs new OS capabilities when tasks aren't supported yet. Need more? Mercury hires automatically.</p>
         </div>
         <div>
-          <h3 class="text-2xl font-medium text-zinc-50 mb-3">Three layers</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">Preferences (the gold — details about you that accumulate over time), decisions (choices that shaped the system), and operations (the system itself). Your identity survives every rebuild.</p>
+          <h3 class="text-2xl font-medium text-[#E6E1D3] mb-3">Three layers</h3>
+          <p class="text-base text-[#8FAFB6] max-w-[320px] md:max-w-[320px]">Preferences (the gold — details about you that accumulate over time), decisions (choices that shaped the system), and operations (the system itself). Your identity survives every rebuild.</p>
         </div>
         <div>
-          <h3 class="text-2xl font-medium text-zinc-50 mb-3">Rebuildable</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">New AI model? Paste the prompt again. It reads your preferences, decisions, and task history, then rebuilds the OS from scratch — better. You never migrate. You replant.</p>
+          <h3 class="text-2xl font-medium text-[#E6E1D3] mb-3">Rebuildable</h3>
+          <p class="text-base text-[#8FAFB6] max-w-[320px] md:max-w-[320px]">New AI model? Paste the prompt again. It reads your preferences, decisions, and task history, then rebuilds the OS from scratch — better. You never migrate. You replant.</p>
         </div>
       </div>
     </section>
 
     <!-- How It Works -->
     <section class="pb-20 md:pb-32">
-      <h2 class="text-4xl font-semibold text-zinc-50 mb-12">How it works</h2>
+      <h2 class="text-4xl font-semibold text-[#E6E1D3] mb-12">How it works</h2>
       <div class="flex flex-col gap-10">
         <div class="flex flex-row gap-6">
-          <span class="font-mono text-xs text-zinc-500 pt-1 shrink-0">01</span>
+          <span class="font-mono text-xs text-[#6E8F97] pt-1 shrink-0">01</span>
           <div>
-            <h3 class="text-lg font-medium text-zinc-50 mb-2">Create a folder</h3>
-            <code class="font-mono text-sm text-zinc-300 bg-zinc-900 px-2.5 py-1 rounded">mkdir my-team &amp;&amp; cd my-team</code>
+            <h3 class="text-lg font-medium text-[#E6E1D3] mb-2">Create a folder</h3>
+            <code class="font-mono text-sm text-[#9FD3DC] bg-[#0D2530] px-2.5 py-1 rounded">mkdir my-team &amp;&amp; cd my-team</code>
           </div>
         </div>
         <div class="flex flex-row gap-6">
-          <span class="font-mono text-xs text-zinc-500 pt-1 shrink-0">02</span>
+          <span class="font-mono text-xs text-[#6E8F97] pt-1 shrink-0">02</span>
           <div>
-            <h3 class="text-lg font-medium text-zinc-50 mb-2">Open your AI tool</h3>
-            <p class="text-base text-zinc-400">Claude Code, Codex, or any AI with filesystem access.</p>
+            <h3 class="text-lg font-medium text-[#E6E1D3] mb-2">Open your AI tool</h3>
+            <p class="text-base text-[#8FAFB6]">Claude Code, Codex, or any AI with filesystem access.</p>
           </div>
         </div>
         <div class="flex flex-row gap-6">
-          <span class="font-mono text-xs text-zinc-500 pt-1 shrink-0">03</span>
+          <span class="font-mono text-xs text-[#6E8F97] pt-1 shrink-0">03</span>
           <div>
-            <h3 class="text-lg font-medium text-zinc-50 mb-2">Paste the prompt</h3>
-            <p class="text-base text-zinc-400">Mercury boots, reads the room, and starts building.</p>
+            <h3 class="text-lg font-medium text-[#E6E1D3] mb-2">Paste the prompt</h3>
+            <p class="text-base text-[#8FAFB6]">Mercury boots, reads the room, and starts building.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-800 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <p class="text-sm text-zinc-500">Built by <a href="https://github.com/heff" class="text-zinc-400 hover:text-zinc-50 transition-colors">heff</a></p>
-      <div class="flex items-center gap-2 text-sm text-zinc-500">
-        <a href="https://github.com/heff/mercuryos" class="text-zinc-400 hover:text-zinc-50 transition-colors">GitHub</a>
+    <footer class="border-t border-[#1A3D47] py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-sm text-[#6E8F97]">Built by <a href="https://github.com/heff" class="text-[#8FAFB6] hover:text-[#E6E1D3] transition-colors">heff</a></p>
+      <div class="flex items-center gap-2 text-sm text-[#6E8F97]">
+        <a href="https://github.com/heff/mercuryos" class="text-[#8FAFB6] hover:text-[#E6E1D3] transition-colors">GitHub</a>
         <span>/</span>
         <span>MIT License</span>
       </div>
@@ -343,12 +350,12 @@ On boot:
       navigator.clipboard.writeText(promptText).then(function() {
         const original = btn.textContent;
         btn.textContent = 'Copied!';
-        btn.classList.remove('bg-slate-200', 'hover:bg-slate-100', 'active:bg-slate-300');
+        btn.classList.remove('bg-[#F28C28]', 'hover:bg-[#F2B15E]', 'active:bg-[#E76F1E]');
         btn.classList.add('bg-green-600', 'text-white');
         setTimeout(function() {
           btn.textContent = original;
           btn.classList.remove('bg-green-600', 'text-white');
-          btn.classList.add('bg-slate-200', 'hover:bg-slate-100', 'active:bg-slate-300');
+          btn.classList.add('bg-[#F28C28]', 'hover:bg-[#F2B15E]', 'active:bg-[#E76F1E]');
         }, 2000);
       });
     });
@@ -360,11 +367,11 @@ On boot:
         const original = btn.textContent;
         btn.textContent = 'Copied';
         btn.classList.add('text-green-500');
-        btn.classList.remove('text-zinc-500');
+        btn.classList.remove('text-[#6E8F97]');
         setTimeout(function() {
           btn.textContent = original;
           btn.classList.remove('text-green-500');
-          btn.classList.add('text-zinc-500');
+          btn.classList.add('text-[#6E8F97]');
         }, 2000);
       });
     });
