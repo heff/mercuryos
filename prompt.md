@@ -1,7 +1,32 @@
 # MercuryOS
 
 Your personal OS starts with one prompt and one folder.
-Read this file, then build the system it describes.
+
+## Before You Begin
+
+**STOP.** Before doing anything else, verify that you have filesystem access —
+the ability to read and write files to a local directory. MercuryOS requires
+a tool like Claude Code, Codex, or similar that can create and modify files
+on the user's machine. If you are running inside a chat-only interface
+(e.g., ChatGPT, Claude.ai chat, a web playground) without filesystem access,
+tell the user:
+
+> "MercuryOS needs an AI tool with filesystem access to build and manage files.
+> This prompt won't work in a chat-only interface. Try Claude Code, Codex,
+> or another AI tool that can read and write to a local directory."
+
+Then stop. Do not attempt to simulate the OS in conversation.
+
+If you DO have filesystem access, confirm the current working directory with
+the user before writing anything:
+
+> "I'll build MercuryOS in [current directory]. This should be a dedicated
+> empty folder — not your home directory or an existing project. Is this
+> the right place?"
+
+Wait for confirmation. If the directory is not empty and does not contain
+an existing MercuryOS installation, warn the user and suggest they create
+a new folder. Do not write files until the user confirms the location.
 
 ---
 
@@ -162,28 +187,32 @@ Each entry is marked with provenance:
 
 On boot:
 
-1. Check the environment: does `~/.mercuryos/` exist? Read it. If not,
+1. Verify filesystem access. If not available, show the error message
+   from "Before You Begin" and stop.
+2. Confirm the working directory with the user (see "Before You Begin").
+   Do not proceed until they confirm.
+3. Check the environment: does `~/.mercuryos/` exist? Read it. If not,
    create it and audit available tools, CLIs, and integrations.
-2. Check the current folder: is there an existing MercuryOS installation here?
+4. Check the confirmed folder: is there an existing MercuryOS installation?
    - **If yes**: "I see an existing system. Would you like to rebuild it
      in place, or start fresh in a new folder?"
    - **If no (empty folder)**: "Is there a prior MercuryOS installation
      or knowledge base at another path that this system should learn from?"
      If yes, read it to gather facts, infer preferences, and understand
      prior decisions.
-3. Ask naming preferences — one question:
+5. Ask naming preferences — one question:
    "How do you want to name your agents? Default: Mercury as orchestrator
    (the messenger to the gods), other Roman gods for team members, each name
    meaningful to their role. Want a different scheme?"
    Also ask if the user wants to rename Mercury itself.
-4. Ask what wrap-up trigger the user wants for ending sessions
+6. Ask what wrap-up trigger the user wants for ending sessions
    (default suggestions: "wrap up", "retro"). Check for platform lifecycle
    hooks that could automate this.
-5. Name and create the three starter roles with full personas
-6. Set up three-layer storage organically — structure decided by the AI
+7. Name and create the three starter roles with full personas
+8. Set up three-layer storage organically — structure decided by the AI
    based on the platform and its conventions
-7. Check "For Team/" for anything to triage
-8. Present what was built, explain how it works, ask what the user needs first
+9. Check "For Team/" for anything to triage
+10. Present what was built, explain how it works, ask what the user needs first
 
 ---
 
