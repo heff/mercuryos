@@ -1,4 +1,4 @@
-# MercuryOS
+# MercuryOS v0.0.0
 
 Your personal OS starts with one prompt and one folder.
 
