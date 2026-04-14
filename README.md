@@ -2,11 +2,11 @@
 
 **One prompt to boot your personal AI operating system.**
 
-An AI-independent orchestration layer that works with any tool that has filesystem access and sub-agent capability. Paste a single prompt into an empty directory. It builds the rest. You talk to Mercury — Mercury talks to the team.
+One prompt, one folder. An AI-independent orchestration layer that works with any tool with filesystem access and sub-agent capability. Paste a single prompt into a directory. It builds the rest. Your preferences drive everything — they're the gold of this system, the work already done that should never be repeated. You talk to Mercury — Mercury talks to the team.
 
 ## Quick Start
 
-1. Create an empty directory
+1. Create a directory (empty or with an existing MercuryOS installation)
 2. Open it in your AI tool of choice
 3. Paste the contents of [`prompt.md`](prompt.md) and run it
 
@@ -22,16 +22,18 @@ Mercury boots with a starter team of three and is ready for your first request.
 
 ## What You Get
 
-- **Mercury** — the orchestrator. Routes requests, never does work directly. The only agent you talk to.
-- **Three starter roles** — a researcher, an HR lead, and a product manager. They get named during boot using your chosen naming convention (default: Roman gods, each name meaningful to the role).
-- **Three-layer architecture** — preferences, decisions, and operations, separated by durability.
-- **Task and decision logging** — a record of what was asked and what choices were made, used for rebuilds.
+- **Mercury** — the orchestrator. Routes requests, never does work directly. The only agent you talk to. Renameable during boot.
+- **Three starter roles** — a researcher, an HR lead, and a product manager. Named during boot using your chosen naming convention (default: Roman gods, each name meaningful to the role). The PM leads as the OS's own product manager — designs new capabilities when tasks aren't supported, asks the right questions to understand goals, and secondarily serves as PM for other products.
+- **Three-layer architecture** — preferences (the gold), decisions, and operations, separated by durability.
+- **For Team / For Me** — exchange folders for communication between you and the team. Drop items in For Team, get results back in For Me.
+- **Task + decision logging** — a capability map of what the system has done, used to inform rebuilds.
+- **Retrospective** — automatic session review that surfaces learnings, captures preferences, and improves the system over time.
 
 ## The Three-Layer Architecture
 
 MercuryOS separates your data into three layers based on how long they last.
 
-**Preferences (most durable)** — Who you are. Facts, preferences, values, heuristics, constraints, salience, current contexts. Organized by cognitive primitive type. This layer is fully portable: copy it to any AI system and it knows you. Survives complete rebuilds.
+**Preferences (most durable)** — Who you are. Facts, preferences, values, heuristics, constraints, salience, current contexts. Organized by cognitive primitive type. This is the gold of the system — work already done that should never be repeated. Fully portable: copy it to any AI system and it knows you. Survives complete rebuilds.
 
 **Decisions (medium durable)** — Choices made while building and operating the system. Each entry logs what was decided, why, what alternatives were considered, and which task prompted it. On a rebuild, the new system reads these as guidance rather than gospel — it can make different choices with better reasoning.
 
@@ -49,18 +51,26 @@ The key insight: when you separate identity from machinery, you can replace the 
 
 **Preference capture.** As you work, team members watch for signals — facts, preferences, values, patterns — and write them to the appropriate preference file. The system gets better because it knows you better.
 
+**Retrospective.** At session end, the system reviews what happened — what was accomplished, what went well, what could improve. It surfaces learnings, captures new preferences, and writes meta-insights to memory. Can hook into platform session-end events for automatic triggering.
+
 ## Upgrades and Rebuilds
 
-This is the core design bet. When a better AI model ships:
+This is the core design bet. When a better AI model ships, paste the prompt into your directory and run it.
 
-1. Start a fresh session with the original prompt
-2. Point it at your existing MercuryOS directory
-3. It reads your preferences, decision log, and task history
-4. It rebuilds operations from scratch — new personas, new workflows, informed by everything that came before
+The boot sequence detects what's already there. If it finds an existing MercuryOS installation in the current folder, it offers a rebuild — reading your preferences, decision log, and task history, then reconstructing operations from scratch. If the folder is empty, it asks whether you have a prior installation at another path so it can import your preferences and decisions before building fresh.
 
 The prompt is a seed, not a blueprint. Each rebuild produces a system shaped by your actual usage, not by the assumptions of the original author. Preferences persist. Decisions provide guidance. Operations get rebuilt better.
 
 You never migrate. You replant.
+
+## Environment System
+
+`~/.mercuryos/` stores machine-specific configuration that doesn't belong in the OS directory and shouldn't sync across machines.
+
+- **`environment.md`** — discovered capabilities: which CLIs are installed, what integrations are available, platform details. Written during boot, updated as new tools are detected.
+- **`.env`** — secrets and API keys. Never committed, never synced.
+
+Purpose: multi-machine support. Run MercuryOS on your laptop and your desktop — each has its own environment file describing what's available locally. When a new OS version boots, it reads `~/.mercuryos/` immediately and knows what it can work with.
 
 ## Requirements
 
@@ -77,7 +87,13 @@ You can. MercuryOS adds specialization, persistent memory, preference learning, 
 No. It requires filesystem access and sub-agent capability. Any tool with those features works. The `Preferences/` layer is portable to anything, including tools that don't run MercuryOS.
 
 **What are the three layers again?**
-Preferences (who you are, most durable), decisions (choices made, medium durable), operations (the system itself, least durable). Preferences survive everything. Operations get rebuilt on upgrade.
+Preferences (who you are, most durable), decisions (choices made, medium durable), operations (the system itself, least durable). Preferences are the gold — they survive everything. Operations get rebuilt on upgrade.
+
+**Can I rename Mercury?**
+Yes. During boot, you're asked for a naming convention and Mercury itself can be renamed to fit. The orchestrator role stays the same regardless of what you call it.
+
+**What's the environment directory?**
+`~/.mercuryos/` stores machine-specific config — discovered capabilities, secrets, platform details. It lives outside the OS directory so it doesn't sync and each machine can describe its own environment.
 
 **Can I modify team members?**
 Yes. Edit any persona file, or ask Mercury to redesign a member through the HR lead. Everything is markdown.
@@ -88,8 +104,8 @@ The default naming convention uses Roman gods, each chosen for a meaningful conn
 **How is this different from a fixed agent framework?**
 No predefined file structure. No hardcoded team. The prompt creates an orchestrator and three starter roles. Everything else emerges from use. The system builds its own structure organically.
 
-**Does a rebuild lose my team?**
-It rebuilds your team. The decision log records why each member was created and how they were designed. A rebuild reads that history and recreates what you need — potentially better, since the new model may be more capable.
+**What happens during a rebuild?**
+The boot sequence detects an existing installation and offers to rebuild. It reads your preferences (preserved as-is), decision log (used as guidance), and task history (used to prioritize). Operations are reconstructed from scratch using the current model's capabilities. Your team may come back with the same names and better skills, or the system may propose structural changes based on what it learned.
 
 ## Contributing
 

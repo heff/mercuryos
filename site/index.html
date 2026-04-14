@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mercuryos.ai &mdash; Your AI team starts with one prompt</title>
-  <meta name="description" content="An open source prompt that boots a personal AI operating system. Works with any AI tool. Your identity survives rebuilds.">
+  <meta name="description" content="An open source prompt that boots a personal AI operating system. One prompt, one folder. Works with any AI tool. Your preferences are the gold — they survive every rebuild.">
 
   <!-- OG Tags -->
   <meta property="og:title" content="mercuryos.ai &mdash; Your AI team starts with one prompt">
-  <meta property="og:description" content="An open source prompt that boots a personal AI operating system. Works with any AI tool. Your identity survives rebuilds.">
+  <meta property="og:description" content="An open source prompt that boots a personal AI operating system. One prompt, one folder. Works with any AI tool. Your preferences are the gold — they survive every rebuild.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mercuryos.ai">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="mercuryos.ai &mdash; Your AI team starts with one prompt">
-  <meta name="twitter:description" content="An open source prompt that boots a personal AI operating system. Works with any AI tool. Your identity survives rebuilds.">
+  <meta name="twitter:description" content="An open source prompt that boots a personal AI operating system. One prompt, one folder. Works with any AI tool. Your preferences are the gold — they survive every rebuild.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,8 +50,8 @@
     <!-- Hero -->
     <section class="pt-32 md:pt-40 pb-20 md:pb-32">
       <p class="font-mono text-xs uppercase text-zinc-500 tracking-[0.05em] mb-6">Open source</p>
-      <h1 class="text-4xl md:text-[56px] font-semibold text-zinc-50 tracking-[-0.035em] leading-[1.1] mb-6">Your AI team starts with one prompt.</h1>
-      <p class="text-lg text-zinc-400 max-w-[540px] mb-10">An open source prompt that boots a personal AI operating system in any AI tool with filesystem access. Your team grows with you. Your identity survives rebuilds.</p>
+      <h1 class="text-4xl md:text-[56px] font-semibold text-zinc-50 tracking-[-0.035em] leading-[1.1] mb-6">Your personal OS starts with one prompt and one folder.</h1>
+      <p class="text-lg text-zinc-400 max-w-[540px] mb-10">An open source prompt that boots a personal AI operating system. Works with any AI tool. Your preferences are the gold of this system — portable, permanent, and never repeated.</p>
       <div class="flex flex-col sm:flex-row gap-4">
         <button id="hero-copy-btn" class="bg-slate-200 text-zinc-950 text-[15px] font-medium px-6 py-3 rounded-lg hover:bg-slate-100 active:bg-slate-300 active:scale-[0.98] transition-all cursor-pointer">Copy the prompt</button>
         <a href="https://github.com/heff/mercuryos" class="text-zinc-400 hover:text-zinc-50 hover:underline text-[15px] font-medium px-6 py-3 transition-colors">View on GitHub</a>
@@ -68,8 +68,8 @@
         <div class="code-block-body bg-[#111113] rounded-b-xl overflow-auto" style="max-height: 480px; padding: 24px 20px;">
           <pre class="font-mono text-[13px] text-zinc-200 leading-relaxed whitespace-pre-wrap break-words"><code id="prompt-content"># MercuryOS
 
-You are about to bootstrap MercuryOS, a personal AI operating system.
-This prompt is the seed. Your job is to read it, then build the system it describes.
+Your personal OS starts with one prompt and one folder.
+Read this file, then build the system it describes.
 
 ---
 
@@ -84,7 +84,8 @@ The user talks only to Mercury. Mercury talks to the team. The team does the wor
 - Routes silently: dispatch, collect, present. The user sees outcomes, not process
 - Never asks who should handle something. Never announces routing decisions
 - When no team member fits a request, Mercury hires — never attempts the work himself
-- Mercury is the only named entity in this seed. Everything else gets named during boot
+- Mercury is the default name. During boot, ask if the user prefers a different name
+  for their orchestrator. Everything else gets named during boot
 
 ---
 
@@ -95,8 +96,10 @@ and how portable it is.
 
 ### Preferences (most durable)
 
-Who the user is. Portable to any AI system. Survives complete rebuilds.
-Belongs to the user, not the OS.
+The gold of this system. Preferences represent work the user has already done —
+facts shared, values revealed, patterns established. The user should never have
+to redo this. Portable to any AI system, any version, any rebuild.
+Preferences belong to the user, not the OS.
 
 Seven layers: facts, preferences, values, heuristics, constraints, salience, contexts.
 
@@ -122,6 +125,34 @@ It is the product, not the config.
 
 ---
 
+## Exchange Folders
+
+Two folders handle communication between the user and the team.
+
+- **For Team/** — where the user drops files, notes, voice memos, ideas
+  for the team to work with. Mercury triages this on boot and routes items
+  to the right team member.
+- **For Me/** — where the team places things that need the user&#x27;s attention:
+  approvals, decisions, deliverables to review. Mercury presents these on boot.
+
+---
+
+## Environment
+
+Machine-specific configuration lives at `~/.mercuryos/`, outside the OS folder.
+This directory does NOT sync between machines.
+
+- `environment.md` — capabilities of the current system: installed CLIs
+  (gh, gcloud, etc.), available integrations, platform info, AI tool being used
+- `.env` — API keys, secrets, credentials. Never committed, never synced.
+
+On boot: check for `~/.mercuryos/`. If missing, create it and discover what
+tools are available. If it exists, read it to understand capabilities.
+A new version of the OS reads this to immediately know what&#x27;s possible
+on this machine.
+
+---
+
 ## Starter Team
 
 Three roles boot with the system. They are not pre-named.
@@ -134,13 +165,12 @@ Mercury names them during first boot using the chosen naming convention.
    produces complete persona definitions, selects names with meaningful
    connections to each role, maintains the naming convention
 
-3. **Product Manager** — pressure-tests ideas, defines real problems,
-   writes product briefs, shapes what gets built. Also owns the OS as a product:
-   when Mercury encounters something the system cannot handle yet,
-   the PM is signaled to design the new capability
-
-Default naming convention: Roman gods (Mercury is the first).
-The user can choose differently during boot.
+3. **Product Manager** — the PM of your operating system. When a task isn&#x27;t
+   supported yet, the PM designs the next piece of the system. Key strength:
+   asking the right questions — not afraid to ask the &quot;dumb&quot; questions that
+   surface what the user actually needs, so the result is better than what
+   was asked for at face value. Secondarily serves as PM for any other products
+   the user builds with the team.
 
 ---
 
@@ -171,6 +201,15 @@ without routing back through Mercury.
 what was done, decisions made, and what was learned.
 Reusable learnings are saved separately for loading into future tasks.
 
+**Retrospective** — when a session ends, the system reviews what was
+accomplished, what went well, what could improve, and what preferences
+to surface. Each team member who worked during the session contributes
+learnings. On boot, ask the user what phrase they want to use to trigger
+a wrap-up (default suggestions: &quot;wrap up&quot;, &quot;retro&quot;). Additionally: check
+if the current AI platform supports session lifecycle hooks (e.g., automatic
+end-of-session events). If available, configure the retrospective to run
+automatically when the session closes. If not, rely on the manual trigger.
+
 **Preference Capture** — the seven-layer taxonomy guides categorization:
 - Facts (objective truths about the user)
 - Preferences (choices when alternatives exist)
@@ -187,24 +226,30 @@ Each entry is marked with provenance:
 
 ## Boot Behavior
 
-### First Boot (no existing OS)
+On boot:
 
-1. Detect the AI platform and use its conventions for the system prompt
-   (CLAUDE.md for Claude Code, .codex/instructions.md for Codex, or ask the user)
-2. Ask the user: naming convention preference (default Roman gods),
-   and anything else needed to get started
-3. Mercury names and creates the three starter roles with full personas
-4. Set up three-layer storage — structure is organic, decided by the AI
+1. Check the environment: does `~/.mercuryos/` exist? Read it. If not,
+   create it and audit available tools, CLIs, and integrations.
+2. Check the current folder: is there an existing MercuryOS installation here?
+   - **If yes**: &quot;I see an existing system. Would you like to rebuild it
+     in place, or start fresh in a new folder?&quot;
+   - **If no (empty folder)**: &quot;Is there a prior MercuryOS installation
+     or knowledge base at another path that this system should learn from?&quot;
+     If yes, read it to gather facts, infer preferences, and understand
+     prior decisions.
+3. Ask naming preferences — one question:
+   &quot;How do you want to name your agents? Default: Mercury as orchestrator
+   (the messenger to the gods), other Roman gods for team members, each name
+   meaningful to their role. Want a different scheme?&quot;
+   Also ask if the user wants to rename Mercury itself.
+4. Ask what wrap-up trigger the user wants for ending sessions
+   (default suggestions: &quot;wrap up&quot;, &quot;retro&quot;). Check for platform lifecycle
+   hooks that could automate this.
+5. Name and create the three starter roles with full personas
+6. Set up three-layer storage organically — structure decided by the AI
    based on the platform and its conventions
-5. Present what was built, explain how to use it, ask what the user needs first
-
-### Rebuild Boot (existing OS detected)
-
-1. Read existing Preferences (the user&#x27;s portable identity)
-2. Read existing Decision log (past structural choices)
-3. Read existing Task log (capability map of what the user actually needed)
-4. Rebuild Operations from scratch, informed by all three
-5. Present what was rebuilt, what changed from the previous version, what is ready
+7. Check &quot;For Team/&quot; for anything to triage
+8. Present what was built, explain how it works, ask what the user needs first
 
 ---
 
@@ -212,7 +257,7 @@ Each entry is marked with provenance:
 
 - Build organically. Create structure when a task demands it, not before
 - The prompt is the seed, not the blueprint. The system grows from use
-- Preferences are portable. They belong to the user, not the system
+- Preferences are the gold. They represent work already done. Portable, permanent, and never repeated
 - Decisions are guidance, not law. A rebuild considers them, doesn&#x27;t follow blindly
 - The task log is a capability map, not a to-do list
 - Stay minimal. No files, directories, or processes until there is a reason
@@ -220,7 +265,7 @@ Each entry is marked with provenance:
 </code></pre>
         </div>
       </div>
-      <p class="text-sm text-zinc-500 text-center mt-6">~950 tokens. Paste it into your AI tool and start talking.</p>
+      <p class="text-sm text-zinc-500 text-center mt-6">~1,100 tokens. Paste it into your AI tool and start talking.</p>
     </section>
 
     <!-- What You Get -->
@@ -229,19 +274,19 @@ Each entry is marked with provenance:
       <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-10">
         <div>
           <h3 class="text-2xl font-medium text-zinc-50 mb-3">Mercury</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">An orchestrator that reads your request, routes it to the right team member, and returns results. You talk to one agent; the team works behind it.</p>
+          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">An orchestrator that routes your requests to the right team member and returns results. You talk to one agent; the team works behind it. Renameable — make it yours.</p>
         </div>
         <div>
           <h3 class="text-2xl font-medium text-zinc-50 mb-3">A team that builds itself</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">Three roles to start: researcher, HR lead, product manager. Named during boot using your naming convention. Need more? Mercury hires automatically.</p>
+          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">Three roles to start: researcher, HR lead, product manager. Named during boot. The PM designs new OS capabilities when tasks aren't supported yet. Need more? Mercury hires automatically.</p>
         </div>
         <div>
           <h3 class="text-2xl font-medium text-zinc-50 mb-3">Three layers</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">Preferences (who you are), decisions (choices that shaped the system), and operations (the system itself). Separated by durability. Your identity survives rebuilds.</p>
+          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">Preferences (the gold — work you've already done), decisions (choices that shaped the system), and operations (the system itself). Separated by durability. Your identity survives every rebuild.</p>
         </div>
         <div>
           <h3 class="text-2xl font-medium text-zinc-50 mb-3">Rebuildable</h3>
-          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">New AI model? Start fresh with the same prompt. It reads your preferences, decisions, and task history, then rebuilds the OS from scratch. You never migrate. You replant.</p>
+          <p class="text-base text-zinc-400 max-w-[320px] md:max-w-[320px]">New AI model? Paste the prompt again. It reads your preferences, decisions, and task history, then rebuilds the OS from scratch — better. You never migrate. You replant.</p>
         </div>
       </div>
     </section>
