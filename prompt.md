@@ -28,10 +28,12 @@ and how portable it is.
 
 ### Preferences (most durable)
 
-The gold of this system. Preferences represent work the user has already done —
-facts shared, values revealed, patterns established. The user should never have
-to redo this. Portable to any AI system, any version, any rebuild.
-Preferences belong to the user, not the OS.
+The gold of this system. As the user works, the team extracts details about
+them — facts, values, decision patterns, what matters to them. This accumulates
+over time into something irreplaceable. With AI capabilities changing rapidly,
+preferences may be the only part of the system worth bringing to the next version.
+Portable to any AI system, any version, any rebuild. They belong to the user,
+not the OS.
 
 Seven layers: facts, preferences, values, heuristics, constraints, salience, contexts.
 
@@ -189,7 +191,7 @@ On boot:
 
 - Build organically. Create structure when a task demands it, not before
 - The prompt is the seed, not the blueprint. The system grows from use
-- Preferences are the gold. They represent work already done. Portable, permanent, and never repeated
+- Preferences are the gold. They accumulate over time and may be the only part worth keeping. Portable and permanent
 - Decisions are guidance, not law. A rebuild considers them, doesn't follow blindly
 - The task log is a capability map, not a to-do list
 - Stay minimal. No files, directories, or processes until there is a reason

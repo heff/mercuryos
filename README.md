@@ -2,7 +2,7 @@
 
 **One prompt to boot your personal AI operating system.**
 
-One prompt, one folder. An AI-independent orchestration layer that works with any tool with filesystem access and sub-agent capability. Paste a single prompt into a directory. It builds the rest. Your preferences drive everything — they're the gold of this system, the work already done that should never be repeated. You talk to Mercury — Mercury talks to the team.
+One prompt, one folder. An AI-independent orchestration layer that works with any tool with filesystem access and sub-agent capability. Paste a single prompt into a directory. It builds the rest. Your preferences are the gold — details about you that accumulate over time and may be the only part worth bringing to the next version. You talk to Mercury — Mercury talks to the team.
 
 ## Quick Start
 
@@ -33,7 +33,7 @@ Mercury boots with a starter team of three and is ready for your first request.
 
 MercuryOS separates your data into three layers based on how long they last.
 
-**Preferences (most durable)** — Who you are. Facts, preferences, values, heuristics, constraints, salience, current contexts. Organized by cognitive primitive type. This is the gold of the system — work already done that should never be repeated. Fully portable: copy it to any AI system and it knows you. Survives complete rebuilds.
+**Preferences (most durable)** — Who you are. Facts, preferences, values, heuristics, constraints, salience, current contexts. Organized by cognitive primitive type. This is the gold of the system — details about you that accumulate over time as you work with your team. With AI capabilities changing rapidly, preferences may be the only part worth bringing to the next version. Fully portable: copy them to any AI system and it knows you.
 
 **Decisions (medium durable)** — Choices made while building and operating the system. Each entry logs what was decided, why, what alternatives were considered, and which task prompted it. On a rebuild, the new system reads these as guidance rather than gospel — it can make different choices with better reasoning.
 
